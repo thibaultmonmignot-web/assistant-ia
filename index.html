@@ -1,49 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mon Assistant</title>
 
-<style>
-body{
-    margin:0;
-    background:#121212;
-    color:white;
-    font-family:Arial;
-    text-align:center;
-}
+<title>Toban AI</title>
 
-h1{
-    padding:20px;
-}
-
-video,canvas{
-    width:90%;
-    max-width:500px;
-    border-radius:15px;
-    margin-top:10px;
-}
-
-button{
-    padding:15px 25px;
-    font-size:18px;
-    margin:10px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-}
-
-#photo{
-    display:none;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<h1>🤖 Mon Assistant IA</h1>
+<header>
+🤖 Toban AI
+</header>
+
+<main>
+
+<h2>Mon assistant intelligent</h2>
 
 <video id="video" autoplay playsinline></video>
 
@@ -55,48 +32,18 @@ button{
 
 <br>
 
-<canvas id="photo"></canvas>
+<canvas id="photo" style="display:none;"></canvas>
 
-<script>
+<div id="resultat">
 
-const video=document.getElementById("video");
-const canvas=document.getElementById("photo");
-const ctx=canvas.getContext("2d");
+Bienvenue dans Toban AI.
 
-async function ouvrirCamera(){
+</div>
 
-try{
+</main>
 
-const stream=await navigator.mediaDevices.getUserMedia({
-
-video:{
-facingMode:"environment"
-}
-
-});
-
-video.srcObject=stream;
-
-}catch(e){
-
-alert("Impossible d'ouvrir la caméra");
-
-}
-
-}
-
-function prendrePhoto(){
-
-canvas.width=video.videoWidth;
-canvas.height=video.videoHeight;
-
-ctx.drawImage(video,0,0);
-
-canvas.style.display="block";
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
+
 </html>
