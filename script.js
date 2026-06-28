@@ -40,3 +40,41 @@ function prendrePhoto() {
     "📸 Photo prise !";
 
 }
+function ecouter() {
+
+    if (!("webkitSpeechRecognition" in window)) {
+
+        document.getElementById("resultat").innerHTML =
+        "❌ La reconnaissance vocale n'est pas disponible sur ce navigateur.";
+
+        return;
+    }
+
+    const recognition = new webkitSpeechRecognition();
+
+    recognition.lang = "fr-FR";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    document.getElementById("resultat").innerHTML =
+    "🎤 J'écoute...";
+
+    recognition.onresult = function(event) {
+
+        const texte = event.results[0][0].transcript;
+
+        document.getElementById("resultat").innerHTML =
+        "🗣️ Tu as dit : <br><br><b>" + texte + "</b>";
+
+    };
+
+    recognition.onerror = function() {
+
+        document.getElementById("resultat").innerHTML =
+        "❌ Je n'ai pas compris.";
+
+    };
+
+    recognition.start();
+
+}
