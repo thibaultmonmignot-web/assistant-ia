@@ -24,6 +24,9 @@ function toggleVision() {
 
     if (actif) {
         analyserContinu();
+        if (speechSynthesis.speaking) {
+    return;
+}
         document.getElementById("resultat").innerHTML =
         "👁️ Vision continue activée";
     } else {
