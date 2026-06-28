@@ -2,6 +2,10 @@ const video = document.getElementById("video");
 const canvas = document.getElementById("photo");
 const ctx = canvas.getContext("2d");
 
+speechSynthesis.onvoiceschanged = () => {
+    speechSynthesis.getVoices();
+};
+
 async function ouvrirCamera() {
 
     try {
@@ -142,6 +146,16 @@ function parler(texte){
     const voix = new SpeechSynthesisUtterance(texte);
 
     voix.lang = "fr-FR";
+    voix.rate = 1;      // vitesse normale
+    voix.pitch = 1;     // voix naturelle
+
+    // choisir une voix française si disponible
+    let voices = speechSynthesis.getVoices();
+    let frVoice = voices.find(v => v.lang.includes("fr"));
+
+    if(frVoice){
+        voix.voice = frVoice;
+    }
 
     speechSynthesis.speak(voix);
 
