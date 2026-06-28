@@ -86,7 +86,45 @@ function ecouter() {
         parler("Bonjour Thibault ! Heureux de te revoir.");
 
     }
+// ----- Mémoire du prénom -----
 
+else if (texte.startsWith("mon prénom est ")) {
+
+    const prenom = texte.replace("mon prénom est ", "");
+
+    enregistrer("prenom", prenom);
+
+    const reponse = "Très bien. Je retiens que votre prénom est " + prenom + ".";
+
+    document.getElementById("resultat").innerHTML = "🤖 " + reponse;
+
+    parler(reponse);
+
+}
+
+else if (texte.includes("quel est mon prénom")) {
+
+    const prenom = lire("prenom");
+
+    if (prenom) {
+
+        const reponse = "Votre prénom est " + prenom + ".";
+
+        document.getElementById("resultat").innerHTML = "🤖 " + reponse;
+
+        parler(reponse);
+
+    } else {
+
+        const reponse = "Je ne connais pas encore votre prénom.";
+
+        document.getElementById("resultat").innerHTML = "🤖 " + reponse;
+
+        parler(reponse);
+
+    }
+
+}
 }
 
     recognition.onerror = function() {
