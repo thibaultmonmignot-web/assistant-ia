@@ -3,7 +3,7 @@ let actif = false;
 
 let dernierObjetDit = "";
 let compteur = 0;
-let enTrainDeParler = false;
+
 // Charger le modèle IA
 async function chargerVision() {
 
@@ -79,6 +79,6 @@ let phrase = "Je vois " + objets.join(", ");
 
     }
 
-    setTimeout(analyserContinu, 200);
+    setTimeout(analyserContinu, 1000);
 
 }
