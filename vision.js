@@ -1,6 +1,9 @@
 let modele = null;
 let actif = false;
 
+let dernierObjetDit = "";
+let compteur = 0;
+
 // Charger le modèle IA
 async function chargerVision() {
 
@@ -14,7 +17,7 @@ async function chargerVision() {
 
 }
 
-// Démarrer / arrêter analyse continue
+// Activer / désactiver
 function toggleVision() {
 
     actif = !actif;
@@ -30,16 +33,12 @@ function toggleVision() {
 
 }
 
-// Boucle de vision
+// Analyse en boucle
 async function analyserContinu() {
 
     if (!actif) return;
 
-    if (!modele) {
-        document.getElementById("resultat").innerHTML =
-        "❌ Vision non chargée";
-        return;
-    }
+    if (!modele) return;
 
     const predictions = await modele.detect(video);
 
@@ -50,7 +49,22 @@ async function analyserContinu() {
         document.getElementById("resultat").innerHTML =
         "🤖 Je vois : " + objet;
 
-        parler("Je vois " + objet);
+        // 🔥 LOGIQUE ANTI-RÉPÉTITION
+        if (objet !== dernierObjetDit) {
+
+            compteur = 0;
+            dernierObjetDit = objet;
+
+        }
+
+        compteur++;
+
+        // 👉 Il parle seulement si l’objet est stable
+        if (compteur === 2) {
+
+            parler("Je vois " + objet);
+
+        }
 
     }
 
