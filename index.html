@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistant Caméra</title>
 
+<style>
+body{
+    background:#111;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+}
+video{
+    width:90%;
+    max-width:500px;
+    border-radius:15px;
+}
+button{
+    padding:15px;
+    font-size:18px;
+    margin:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>📷 Assistant Caméra</h1>
+
+<video id="video" autoplay playsinline></video>
+
+<br>
+
+<button onclick="startCamera()">Ouvrir la caméra</button>
+
+<p id="resultat">Appuie sur le bouton pour ouvrir la caméra.</p>
+
+<script>
+
+const video=document.getElementById("video");
+
+async function startCamera(){
+
+try{
+
+const stream=await navigator.mediaDevices.getUserMedia({
+video:{
+facingMode:"environment"
+},
+audio:false
+});
+
+video.srcObject=stream;
+
+document.getElementById("resultat").innerHTML=
+"✅ Caméra ouverte.";
+
+}catch(e){
+
+document.getElementById("resultat").innerHTML=
+"❌ Impossible d'accéder à la caméra.";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
