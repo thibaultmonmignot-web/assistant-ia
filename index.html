@@ -7,7 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Toban AI</title>
+  
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+  
 <link rel="stylesheet" href="style.css">
 
 </head>
@@ -30,6 +34,10 @@
 
 <button onclick="prendrePhoto()">📸 Prendre une photo</button>
   
+  <button onclick="chargerVision()">🧠 Activer la vision</button>
+
+<button onclick="analyserImage()">👁️ Analyser</button>
+  
 <button onclick="ecouter()">🎤 Parler</button>
   
 <br>
@@ -45,6 +53,7 @@ Bienvenue dans Toban AI.
 </main>
   
 <script src="memoire.js"></script>
+<script src="vision.js"></script>
 <script src="script.js"></script>
 
 </body>
