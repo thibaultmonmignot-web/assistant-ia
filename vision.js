@@ -47,7 +47,11 @@ async function analyserContinu() {
 
     if (predictions.length > 0) {
 
-        let objet = predictions[0].class;
+        let objets = predictions
+    .slice(0, 3)
+    .map(o => o.class);
+
+let phrase = "Je vois " + objets.join(", ");
 
         document.getElementById("resultat").innerHTML =
         "🤖 Je vois : " + objet;
@@ -65,8 +69,7 @@ async function analyserContinu() {
         // 👉 Il parle seulement si l’objet est stable
         if (compteur === 2) {
 
-            parler("Je vois " + objet);
-
+           parler(phrase);
         }
 
     }
