@@ -1,9 +1,7 @@
-// =========================
-// Vision de Toban AI
-// =========================
-
 let modele = null;
+let actif = false;
 
+// Charger le modèle IA
 async function chargerVision() {
 
     document.getElementById("resultat").innerHTML =
@@ -16,36 +14,46 @@ async function chargerVision() {
 
 }
 
-async function analyserImage() {
+// Démarrer / arrêter analyse continue
+function toggleVision() {
+
+    actif = !actif;
+
+    if (actif) {
+        analyserContinu();
+        document.getElementById("resultat").innerHTML =
+        "👁️ Vision continue activée";
+    } else {
+        document.getElementById("resultat").innerHTML =
+        "⛔ Vision arrêtée";
+    }
+
+}
+
+// Boucle de vision
+async function analyserContinu() {
+
+    if (!actif) return;
 
     if (!modele) {
-
         document.getElementById("resultat").innerHTML =
-        "❌ Vision non chargée.";
-
+        "❌ Vision non chargée";
         return;
-
     }
 
     const predictions = await modele.detect(video);
 
-    if(predictions.length===0){
+    if (predictions.length > 0) {
+
+        let objet = predictions[0].class;
 
         document.getElementById("resultat").innerHTML =
-        "🤖 Je ne reconnais aucun objet.";
+        "🤖 Je vois : " + objet;
 
-        return;
+        parler("Je vois " + objet);
 
     }
 
-    let texte="🤖 Je vois :<br><br>";
-
-    predictions.forEach(objet=>{
-
-        texte+=objet.class+"<br>";
-
-    });
-
-    document.getElementById("resultat").innerHTML=texte;
+    setTimeout(analyserContinu, 1000);
 
 }
