@@ -60,11 +60,14 @@ async function analyserContinu() {
         compteur++;
 
         // 👉 Il parle seulement si l’objet est stable
-        if (compteur === 2) {
+    if (compteur === 2 && actif) {
 
-            parler("Je vois " + objet);
+    // stop parole précédente si elle existe
+    speechSynthesis.cancel();
 
-        }
+    parler("Je vois " + objet);
+
+}
 
     }
 
