@@ -35,7 +35,10 @@ function toggleVision() {
 
 // Analyse en boucle
 async function analyserContinu() {
-
+    
+    if (speechSynthesis.speaking) {
+        return;
+    }
     if (!actif) return;
 
     if (!modele) return;
@@ -60,7 +63,7 @@ async function analyserContinu() {
         compteur++;
 
         // 👉 Il parle seulement si l’objet est stable
-        if (compteur === 2) {
+        if (compteur === 1) {
 
             parler("Je vois " + objet);
 
@@ -68,6 +71,6 @@ async function analyserContinu() {
 
     }
 
-    setTimeout(analyserContinu, 1000);
+    setTimeout(analyserContinu, 4000);
 
 }
