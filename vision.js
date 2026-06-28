@@ -1,9 +1,6 @@
 let modele = null;
 let actif = false;
 
-let dernierObjetDit = "";
-let compteur = 0;
-
 // Charger le modèle IA
 async function chargerVision() {
 
@@ -34,12 +31,6 @@ function toggleVision() {
 }
 
 // Analyse en boucle
-async function analyserContinu() {
-    
-    if (enTrainDeParler) {
-    setTimeout(analyserContinu, 100);
-    return;
-}
     
     if (speechSynthesis.speaking) {
         return;
