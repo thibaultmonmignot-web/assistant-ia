@@ -59,14 +59,35 @@ function ecouter() {
     document.getElementById("resultat").innerHTML =
     "🎤 J'écoute...";
 
-    recognition.onresult = function(event) {
+   recognition.onresult = function(event){
 
-        const texte = event.results[0][0].transcript;
+    const texte = event.results[0][0].transcript.toLowerCase();
+
+    document.getElementById("resultat").innerHTML =
+    "🗣️ Tu as dit : <b>" + texte + "</b>";
+
+    if(texte.includes("ouvre la caméra")){
+
+        ouvrirCamera();
+
+    }
+
+    else if(texte.includes("prends une photo")){
+
+        prendrePhoto();
+
+    }
+
+    else if(texte.includes("bonjour")){
 
         document.getElementById("resultat").innerHTML =
-        "🗣️ Tu as dit : <br><br><b>" + texte + "</b>";
+        "🤖 Bonjour Thibault ! Heureux de te revoir.";
 
-    };
+        parler("Bonjour Thibault ! Heureux de te revoir.");
+
+    }
+
+}
 
     recognition.onerror = function() {
 
