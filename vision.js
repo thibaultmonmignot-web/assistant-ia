@@ -1,6 +1,9 @@
 let modele = null;
 let actif = false;
 
+let dernierObjetDit = "";
+let compteur = 0;
+
 // Charger le modèle IA
 async function chargerVision() {
 
@@ -31,10 +34,8 @@ function toggleVision() {
 }
 
 // Analyse en boucle
-    
-    if (speechSynthesis.speaking) {
-        return;
-    }
+async function analyserContinu() {
+
     if (!actif) return;
 
     if (!modele) return;
@@ -43,11 +44,7 @@ function toggleVision() {
 
     if (predictions.length > 0) {
 
-        let objets = predictions
-    .slice(0, 3)
-    .map(o => o.class);
-
-let phrase = "Je vois " + objets.join(", ");
+        let objet = predictions[0].class;
 
         document.getElementById("resultat").innerHTML =
         "🤖 Je vois : " + objet;
@@ -65,7 +62,8 @@ let phrase = "Je vois " + objets.join(", ");
         // 👉 Il parle seulement si l’objet est stable
         if (compteur === 2) {
 
-           parler(phrase);
+            parler("Je vois " + objet);
+
         }
 
     }
