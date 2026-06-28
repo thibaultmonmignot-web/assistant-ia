@@ -1,9 +1,6 @@
 let modele = null;
 let actif = false;
 
-let dernierObjet = "";
-let dernierTemps = 0;
-
 let dernierObjetDit = "";
 let compteur = 0;
 let enTrainDeParler = false;
