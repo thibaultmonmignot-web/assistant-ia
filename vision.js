@@ -68,6 +68,6 @@ async function analyserContinu() {
 
     }
 
-    setTimeout(analyserContinu, 1000);
+    setTimeout(analyserContinu, 300);
 
 }
