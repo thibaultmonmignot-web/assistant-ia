@@ -1,6 +1,9 @@
 let modele = null;
 let actif = false;
 
+let dernierObjet = "";
+let dernierTemps = 0;
+
 let dernierObjetDit = "";
 let compteur = 0;
 let enTrainDeParler = false;
@@ -35,6 +38,11 @@ function toggleVision() {
 
 // Analyse en boucle
 async function analyserContinu() {
+    
+    if (enTrainDeParler) {
+    setTimeout(analyserContinu, 100);
+    return;
+}
     
     if (speechSynthesis.speaking) {
         return;
