@@ -47,9 +47,5 @@ async function analyserImage() {
     });
 
     document.getElementById("resultat").innerHTML=texte;
-    
-<script src="memoire.js"></script>
-<script src="vision.js"></script>
-<script src="script.js"></script>
-    
+  
 }
