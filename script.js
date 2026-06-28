@@ -74,7 +74,7 @@ function ecouter() {
         "❌ Je n'ai pas compris.";
 
     };
-
+    
     recognition.start();
 
 }
