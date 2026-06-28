@@ -141,24 +141,16 @@ else if (texte.includes("quel est mon prénom")) {
     recognition.start();
 
 }
-function parler(texte){
+let objet = predictions[0].class;
 
-    // coupe immédiatement ce qui est en cours
-    speechSynthesis.cancel();
+// anti spam + rapidité
+const maintenant = Date.now();
 
-    const voix = new SpeechSynthesisUtterance(texte);
-    voix.lang = "fr-FR";
-    voix.rate = 1.2; // un peu plus rapide
-    voix.pitch = 1;
+if (objet !== dernierObjet || maintenant - dernierTemps > 2000) {
 
-    voix.onstart = () => {
-        enTrainDeParler = true;
-    };
+    dernierObjet = objet;
+    dernierTemps = maintenant;
 
-    voix.onend = () => {
-        enTrainDeParler = false;
-    };
-
-    speechSynthesis.speak(voix);
+    parler("Je vois " + objet);
 
 }
