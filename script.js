@@ -99,3 +99,12 @@ function ecouter() {
     recognition.start();
 
 }
+function parler(texte){
+
+    const voix = new SpeechSynthesisUtterance(texte);
+
+    voix.lang = "fr-FR";
+
+    speechSynthesis.speak(voix);
+
+}
