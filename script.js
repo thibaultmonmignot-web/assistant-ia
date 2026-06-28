@@ -143,19 +143,21 @@ else if (texte.includes("quel est mon prénom")) {
 }
 function parler(texte){
 
+    // coupe immédiatement ce qui est en cours
+    speechSynthesis.cancel();
+
     const voix = new SpeechSynthesisUtterance(texte);
-
     voix.lang = "fr-FR";
-    voix.rate = 1;      // vitesse normale
-    voix.pitch = 1;     // voix naturelle
+    voix.rate = 1.2; // un peu plus rapide
+    voix.pitch = 1;
 
-    // choisir une voix française si disponible
-    let voices = speechSynthesis.getVoices();
-    let frVoice = voices.find(v => v.lang.includes("fr"));
+    voix.onstart = () => {
+        enTrainDeParler = true;
+    };
 
-    if(frVoice){
-        voix.voice = frVoice;
-    }
+    voix.onend = () => {
+        enTrainDeParler = false;
+    };
 
     speechSynthesis.speak(voix);
 
