@@ -63,7 +63,7 @@ async function analyserContinu() {
         compteur++;
 
         // 👉 Il parle seulement si l’objet est stable
-        if (compteur === 1) {
+        if (compteur === 2) {
 
             parler("Je vois " + objet);
 
